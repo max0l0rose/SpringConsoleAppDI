@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.SequenceGenerator;
 
 @Entity
 @Data
@@ -13,8 +14,9 @@ import javax.persistence.Entity;
 @NoArgsConstructor
 //@Getter
 //@Setter
-public class Department extends BaseEntity {
-
+@SequenceGenerator(name = "sequence2", sequenceName = "mySequence2")
+public class Department extends BaseEntity
+{
 	@Column(length = 50)
 	String depName;
 }

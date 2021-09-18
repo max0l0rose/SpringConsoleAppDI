@@ -1,6 +1,7 @@
 package com.example.springconsoleappdi;
 
 import com.example.springconsoleappdi.model.Department;
+import com.example.springconsoleappdi.model.Role;
 import com.example.springconsoleappdi.model.User;
 import com.example.springconsoleappdi.repo.DepsRepo;
 import com.example.springconsoleappdi.repo.UsersRepo;
@@ -14,6 +15,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceContextType;
+
 @SpringBootApplication(
 //		exclude={DataSourceAutoConfiguration.class}
 )
@@ -22,6 +27,9 @@ public class SpringConsoleAppDiApplication {
 
 	private static final Logger log = LoggerFactory.getLogger(SpringConsoleAppDiApplication.class);
 
+	//@PersistenceContext(type = PersistenceContextType.EXTENDED)
+	@Autowired
+	private EntityManager entityManager;
 
 	//@Autowired
 	//UsersRepo repository;
@@ -30,13 +38,19 @@ public class SpringConsoleAppDiApplication {
 	DepsRepo depsRepo;
 
 
+	//CommandLineRunner
 	@Bean
 	public boolean demo(UsersRepo repository) {
 		//return (args) ->
 		//{
-			Department dep = new Department("dep1");
+		log.info("demo: ");
+
+			Department dep = new Department("dep");
 			depsRepo.save(dep);
-			User user = new User("Jack", dep);
+			dep.setDepName(dep.getDepName() + dep.getId());
+			depsRepo.save(dep);
+
+			User user = new User("Jack", dep, Role.ADMIN);
 			repository.save(user);
 //			// fetch all customers
 //			log.info("Customers found with findAll():");
@@ -62,14 +76,16 @@ public class SpringConsoleAppDiApplication {
 //			// for (Customer bauer : repository.findByLastName("Bauer")) {
 //			//  log.info(bauer.toString());
 //			// }
-//			log.info("");
+			log.info("demo: Ok");
 		//};
 		return  true;
 	}
 
 
 	public static void main(String[] args) {
+		log.info("main: Start");
 		SpringApplication.run(SpringConsoleAppDiApplication.class, args);
+		log.info("main: Done!");
 	}
 
 }
