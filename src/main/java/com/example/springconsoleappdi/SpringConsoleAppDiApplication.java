@@ -18,6 +18,14 @@ import org.springframework.context.annotation.Bean;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceContextType;
+import java.sql.Time;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.ArrayList;
+import java.util.List;
+
+import static java.time.temporal.TemporalAdjusters.lastDayOfMonth;
 
 @SpringBootApplication(
 //		exclude={DataSourceAutoConfiguration.class}
@@ -83,6 +91,32 @@ public class SpringConsoleAppDiApplication {
 
 
 	public static void main(String[] args) {
+
+		//List<String> zones = new ArrayList<>(ZoneId.getAvailableZoneIds());
+
+		//ZoneId id = ZoneId.of("Europe/Paris");
+		//ZoneId id2 = ZoneId.of("Europe/Kiev"); // OK
+
+
+		LocalDateTime timePoint = LocalDateTime.now();     // The current date and time
+		int m = timePoint.getMonthValue();
+		LocalDateTime ldt2 = timePoint
+				.withMonth(m);
+				//.withDayOfMonth(10)
+				//.withYear(2010);
+		LocalDateTime foo = ldt2.with(lastDayOfMonth());
+		int lastDay = foo.getDayOfMonth();
+
+
+//		java.sql.Time stime = new Time(Instant.now());
+//		//Instant.now();
+//		java.sql.Date sdate;
+//		java.util.Date ut;
+//		java.util.Calendar cal;
+//
+//		Instant it;
+
+
 		log.info("main: Start");
 		SpringApplication.run(SpringConsoleAppDiApplication.class, args);
 		log.info("main: Done!");

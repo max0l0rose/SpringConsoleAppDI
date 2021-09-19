@@ -3,7 +3,6 @@ package com.example.springconsoleappdi.model;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.sql.Time;
 
 //@Entity // ERROR
 //@Inheritance(strategy = InheritanceType.JOINED)
@@ -25,6 +24,4 @@ public class BaseEntity {
 
 	@Column(columnDefinition = "integer default 0")
 	int version;
-
-	Time qqq;
 }
