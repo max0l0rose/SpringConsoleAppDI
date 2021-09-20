@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Data
@@ -12,14 +13,17 @@ import javax.persistence.*;
 @NoArgsConstructor
 //@Getter
 //@Setter
-@SequenceGenerator(name = "sequence1", sequenceName = "mySequence1")
+@SequenceGenerator(name = "sequenceGen", sequenceName = "seqUser", allocationSize = 1, initialValue = 1)
 public class User extends BaseEntity {
 
+	@NotNull
 	@Column(length = 100, columnDefinition = "varchar(50) default 'qqq'")
 	String username;
 
 	@OneToOne
 	public Department department;
+
+	//@Basic(optional = false)
 
 	//@Enumerated
 	Role role;

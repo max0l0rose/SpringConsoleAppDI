@@ -19,9 +19,11 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceContextType;
 import java.sql.Time;
+import java.sql.Timestamp;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,10 +59,12 @@ public class SpringConsoleAppDiApplication {
 			depsRepo.save(dep);
 			dep.setDepName(dep.getDepName() + dep.getId());
 			depsRepo.save(dep);
+			//entityManager.merge(dep);
 
 			User user = new User("Jack", dep, Role.ADMIN);
 			repository.save(user);
 //			// fetch all customers
+
 //			log.info("Customers found with findAll():");
 //			log.info("-------------------------------");
 //			for (Customer customer : repository.findAll()) {
@@ -91,27 +95,30 @@ public class SpringConsoleAppDiApplication {
 
 
 	public static void main(String[] args) {
-
 		//List<String> zones = new ArrayList<>(ZoneId.getAvailableZoneIds());
 
 		//ZoneId id = ZoneId.of("Europe/Paris");
 		//ZoneId id2 = ZoneId.of("Europe/Kiev"); // OK
+		//ZoneOffset
 
+//		LocalDateTime timePoint = LocalDateTime.now();     // The current date and time
+//		int m = timePoint.getMonthValue();
+//		LocalDateTime ldt2 = timePoint
+//				.withMonth(m);
+//				//.withDayOfMonth(10)
+//				//.withYear(2010);
+//
+//		java.sql.Timestamp ts;
+//
+//		LocalDateTime foo = ldt2.with(lastDayOfMonth());
+//		//int lastDay = foo.getDayOfMonth();
 
-		LocalDateTime timePoint = LocalDateTime.now();     // The current date and time
-		int m = timePoint.getMonthValue();
-		LocalDateTime ldt2 = timePoint
-				.withMonth(m);
-				//.withDayOfMonth(10)
-				//.withYear(2010);
-		LocalDateTime foo = ldt2.with(lastDayOfMonth());
-		int lastDay = foo.getDayOfMonth();
-
+		//ZoneOffset zoneOffset = ZoneOffset.of("+2:00");
 
 //		java.sql.Time stime = new Time(Instant.now());
 //		//Instant.now();
-//		java.sql.Date sdate;
-//		java.util.Date ut;
+		//java.sql.Date sdate;
+		//java.util.Date ut;
 //		java.util.Calendar cal;
 //
 //		Instant it;
