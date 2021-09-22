@@ -14,18 +14,11 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.shell.standard.ShellComponent;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.PersistenceContextType;
-import java.sql.Time;
-import java.sql.Timestamp;
-import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.ZoneOffset;
-import java.util.ArrayList;
-import java.util.List;
+import javax.persistence.*;
+
 
 import static java.time.temporal.TemporalAdjusters.lastDayOfMonth;
 
@@ -33,6 +26,7 @@ import static java.time.temporal.TemporalAdjusters.lastDayOfMonth;
 //		exclude={DataSourceAutoConfiguration.class}
 )
 //@EnableAutoConfiguration()
+@PropertySource("classpath:local.properties")
 public class SpringConsoleAppDiApplication {
 
 	private static final Logger log = LoggerFactory.getLogger(SpringConsoleAppDiApplication.class);
@@ -40,6 +34,9 @@ public class SpringConsoleAppDiApplication {
 	//@PersistenceContext(type = PersistenceContextType.EXTENDED)
 	@Autowired
 	private EntityManager entityManager;
+
+	@PersistenceUnit
+	EntityManagerFactory entityManFactory;
 
 	//@Autowired
 	//UsersRepo repository;
@@ -50,6 +47,7 @@ public class SpringConsoleAppDiApplication {
 
 	//CommandLineRunner
 	@Bean
+	//@Transactional
 	public boolean demo(UsersRepo repository) {
 		//return (args) ->
 		//{
@@ -124,9 +122,44 @@ public class SpringConsoleAppDiApplication {
 //		Instant it;
 
 
+
+
+//		Scanner in = new Scanner(System.in);
+//		System.out.println("What is your name?");
+//		String name = in.next();
+//		System.out.println("Hello " + name + " welcome to spring boot" );
+//
+//		System.out.println("What is your height?");
+//		int height = in.nextInt();
+//		System.out.println(height);
+
+
+//		Bootstrap bootstrap = new Bootstrap();
+//		JLineShellComponent shell = bootstrap.getJLineShellComponent();
+//		shell.executeCommand("help");
+
+//		try {
+//			Bootstrap.main(args);
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+
 		log.info("main: Start");
 		SpringApplication.run(SpringConsoleAppDiApplication.class, args);
 		log.info("main: Done!");
+
+
+//		Console console = System.console();
+//		String user = console.readLine("user: ");
+//		String password = new String(console.readPassword("password: "));
+
 	}
 
 }
+
+//@ShellComponent
+//public class ClidemoPromptProvider{
+//
+//}
+
+
