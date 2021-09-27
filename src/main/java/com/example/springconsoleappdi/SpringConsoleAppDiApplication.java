@@ -19,7 +19,6 @@ import org.springframework.shell.standard.ShellComponent;
 
 import javax.persistence.*;
 
-
 import static java.time.temporal.TemporalAdjusters.lastDayOfMonth;
 
 @SpringBootApplication(
