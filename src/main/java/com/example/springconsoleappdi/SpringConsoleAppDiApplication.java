@@ -204,9 +204,9 @@ public class SpringConsoleAppDiApplication {
 //			e.printStackTrace();
 //		}
 
-		log.info("main: Start");
+		log.info("main: ----------------------------");
 		SpringApplication.run(SpringConsoleAppDiApplication.class, args);
-		log.info("main: Done!");
+		log.info("main: ===========================!");
 
 
 //		Console console = System.console();

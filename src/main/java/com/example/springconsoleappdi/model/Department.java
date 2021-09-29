@@ -32,12 +32,12 @@ public class Department extends BaseEntity
 
 	@Override
 	public String toString() {
-		return "Department{" +
-				       "id=" + id +
-				       ", created=" + created +
+		return depName + "{"
+				       + id +
 				       ", modified=" + modified +
 				       '}';
 	}
+
 }
 
 

@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 public class Helper {
 
@@ -16,20 +17,34 @@ public class Helper {
 							   Map<String, Object> session,
 							   MyService<T> service,
 							   int pageNumber,
-							   String sort,
-							   String sortDir) {
-		String ssort = (String) session.get("sort");
-		if (sort.equals(""))
-			sort = ssort;
+							   String sortIn,
+							   String sortDirIn) {
+//		String sesSort = Optional.ofNullable((String)session.get("sort")).orElse("");
+//		if (sort == null)
+//			sort = "";
+//		if (sort.equals(""))
+//			sort = sesSort;
 
-		//assert null != null;
 
-		if (sortDir.equals(""))
-			sortDir = (sortDir = (String) session.get("sortDir")) != null ? sortDir : "";
+		String sesSort = (String)session.get("sort");
+		String sort = Optional.ofNullable(sortIn).orElse(
+			Optional.ofNullable(sesSort).orElse("")
+		);
+
+
+//		//assert null != null;
+//
+//		if (sortDir.equals(""))
+//			sortDir = (sortDir = (String) session.get("sortDir")) != null ? sortDir : "";
+
+		String sortDir = Optional.ofNullable(sortDirIn).orElse(
+				Optional.ofNullable((String)session.get("sortDir")).orElse("")
+		);
+
 
 		Integer pn = (Integer) session.get("pageNumber");
 
-		if (!sort.equals(ssort))
+		if (!sort.equals(sesSort))
 			sortDir = "asc";
 		else
 			if (pn == null || pn == pageNumber)

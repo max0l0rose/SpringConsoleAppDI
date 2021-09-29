@@ -16,6 +16,8 @@ import javax.validation.constraints.NotNull;
 @SequenceGenerator(name = "sequenceGen", sequenceName = "seqUser", allocationSize = 1, initialValue = 1)
 public class User extends BaseEntity implements StringsArray {
 
+	public final static String[][] headers = {{"Id", "UserName", "Department", "Role", "Created", "Modified" },};
+
 	@NotNull
 	@Column(length = 100, columnDefinition = "varchar(50) default 'qqq'")
 	String username;
@@ -30,9 +32,15 @@ public class User extends BaseEntity implements StringsArray {
 
 
 	public String[] toStringsArray() {
-		return new String[] {String.valueOf(id), String.valueOf(username), String.valueOf(department), String.valueOf(created), String.valueOf(modified)};
+		return new String[] {
+				String.valueOf(id), String.valueOf(username), String.valueOf(department),
+				String.valueOf(role), String.valueOf(created), String.valueOf(modified)
+		};
 	}
 
+//	public static String[] getHeaders() {
+//		return new String[] {String.valueOf(id), String.valueOf(username), String.valueOf(department), String.valueOf(created), String.valueOf(modified)};
+//	}
 
 	@Override
 	public String toString() {
