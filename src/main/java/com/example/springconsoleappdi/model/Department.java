@@ -26,9 +26,11 @@ import javax.validation.constraints.NotNull;
 //)
 public class Department extends BaseEntity
 {
+	public final static String[][] headers = {{"Id", "DepName", "Created", "Modified" },};
+
 	@Column(length = 50)
 	@NotNull
-	String depName;
+	private String depName;
 
 	@Override
 	public String toString() {

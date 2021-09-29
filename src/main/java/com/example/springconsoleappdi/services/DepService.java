@@ -1,7 +1,8 @@
 package com.example.springconsoleappdi.services;
 
+import com.example.springconsoleappdi.model.Department;
 import com.example.springconsoleappdi.model.User;
-import com.example.springconsoleappdi.repo.UserRepository;
+import com.example.springconsoleappdi.repo.DepsRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -9,16 +10,15 @@ import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 
-
 @Component
-public class UserService implements MyService<User>{
+public class DepService implements MyService<Department>{
 //	private final static String URL = "jdbc:mysql://localhost:3306/db1";
 //	private final static String USERNAME = "root";
 //	private final static String PWD = "q12345";
 //	private static Connection conn;
 
 	@Autowired
-	private UserRepository userRepository;
+	private DepsRepo depsRepo;
 
 
 ////	static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
@@ -57,8 +57,8 @@ public class UserService implements MyService<User>{
 //	}
 
 
-	public Page<User> getPage(Pageable page) {
-		return userRepository.findAll(page);
+	public Page<Department> getPage(Pageable page) {
+		return depsRepo.findAll(page);
 //		try {
 //			Statement statement = conn.createStatement();
 //			ResultSet rset = statement.executeQuery("SELECT * FROM users");
@@ -76,11 +76,11 @@ public class UserService implements MyService<User>{
 	}
 
 
-	public Optional<User> show(int id) {
+	public Optional<Department> show(int id) {
 //		Optional<User> u = Optional.ofNullable(null);
 //		u.filter()
 
-		return userRepository.findById(id);
+		return depsRepo.findById(id);
 
 //		ResultSet set;
 //		try {
@@ -104,13 +104,13 @@ public class UserService implements MyService<User>{
 
 
 
-//	public Optional<User> findByName(String name) {
-//		return userRepository.findByUsername(name);
+//	public Optional<Department> findByName(String name) {
+//		return depsRepo.findByDepName(name);
 //	}
 
 
-	public User save(User user) {
-		return userRepository.save(user);
+	public Department save(Department department) {
+		return depsRepo.save(department);
 //		try {
 //			PreparedStatement statement = conn.prepareStatement(
 //					"INSERT INTO users (name) VALUES (?)");
@@ -141,7 +141,7 @@ public class UserService implements MyService<User>{
 
 
 	public void delete(int id) {
-		userRepository.deleteById(id);
+		depsRepo.deleteById(id);
 //		try {
 //			PreparedStatement statement = conn.prepareStatement(
 //					"DELETE FROM users WHERE id = ?");
@@ -155,49 +155,3 @@ public class UserService implements MyService<User>{
 	}
 
 }
-
-
-//
-//@Component
-//public class UsersDAO {
-//	private static int userid = 0;
-//
-//	ArrayList<User> users;
-//
-//	{
-//		users = new ArrayList<>();
-//
-//		users.add(new User(++userid, "Vasya"));
-//		users.add(new User(++userid, "Rosa"));
-//		users.add(new User(++userid, "Luna))"));
-//	}
-//
-//	public List<User> index() {
-//		return users;
-//	}
-//
-//
-//	public Optional<User> show(int id) {
-//		return users.stream().filter(u -> u.getId() == id).findAny();//.orElse(null);
-//	}
-//
-//
-//	public boolean save(User user) {
-//		user.setId(++userid);
-//		return users.add(user);
-//	}
-//
-//
-//	public boolean update(User user) {
-//		User userToBeUpdated = show(user.getId()).get();
-//		if (user == null)
-//			return false;
-//		return userToBeUpdated.setName(user.getName());
-//	}
-//
-//
-//	public boolean delete(int id) {
-//		return users.removeIf(e -> e.getId() == id);
-//	}
-//
-//}

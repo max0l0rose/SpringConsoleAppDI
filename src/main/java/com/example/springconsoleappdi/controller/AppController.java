@@ -1,4 +1,4 @@
-package com.example.springconsoleappdi;
+package com.example.springconsoleappdi.controller;
 
 import com.example.springconsoleappdi.controller.Helper;
 import com.example.springconsoleappdi.model.Department;
@@ -6,6 +6,7 @@ import com.example.springconsoleappdi.model.Role;
 import com.example.springconsoleappdi.model.StringsArray;
 import com.example.springconsoleappdi.model.User;
 import com.example.springconsoleappdi.services.UserService;
+import com.example.springconsoleappdi.view.UsersView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
@@ -13,15 +14,13 @@ import org.springframework.shell.standard.ShellOption;
 import org.springframework.shell.table.*;
 import org.springframework.ui.ExtendedModelMap;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 
-import javax.jws.soap.SOAPBinding;
 import javax.validation.constraints.Size;
 import java.util.*;
 import java.util.stream.Stream;
 
 @ShellComponent
-public class AppCommand1
+public class AppController
 		//extends SecuredCommand
 {
 	private final Map<String,Object> session = new HashMap<>();
@@ -34,8 +33,8 @@ public class AppCommand1
 //	};
 
 
-	@ShellMethod(key = {"commandc", "cc"}, value = "commandA descript...")
-	public String commandA(
+	@ShellMethod(key = {"users", "us"}, value = "Show users...")
+	public String commandUsers(
 //			@Size(min = 5, max = 40)
 //			@ShellOption() //arity = 3, defaultValue = "deffffff",  help = "Possi"
 //					String text,
@@ -53,36 +52,12 @@ public class AppCommand1
 //				.toArray(size -> new Object[size][]);
 //
 //		//StringsArray sa = u;
-
-		//sampleData[1] = u.toStringsArray();
+//		//sampleData[1] = u.toStringsArray();
 
 		Model model = new ExtendedModelMap();
-		//model.addAttribute("qqq", 1);
 		Helper.getPage(model, session, userService, 0, "id", "");
 
-		List<User> uList = (List<User>)model.getAttribute("list");
-		Object[][] headersAndData = Stream.concat(
-					Arrays.stream(User.headers),
-					uList.stream().map(u -> u.toStringsArray())
-				)
-				.toArray(size -> new Object[size][]);
-//				.forEach(q -> {
-//							Arrays.stream(q)
-//									.forEach(a -> System.out.print(a + " "));
-//							System.out.println(": " + Arrays.stream(q).count());
-//						}
-//				);
-
-
-		TableModel tmodel = new ArrayTableModel(headersAndData);
-		TableBuilder tableBuilder = new TableBuilder(tmodel);
-		tableBuilder.addInnerBorder(BorderStyle.fancy_light).addHeaderBorder(BorderStyle.fancy_double)
-			.on(CellMatchers.column(0)).addWrapper(new KeyValueTextWrapper()).addSizer(new AbsoluteWidthSizeConstraints(20))
-			.on(CellMatchers.column(1)).addSizer(new AbsoluteWidthSizeConstraints(30))
-			.on(CellMatchers.column(2)).addSizer(new AbsoluteWidthSizeConstraints(50));
-		//tableBuilder.on(CellMatchers.ofType(LocalDate.class)).addFormatter(dateFormatter);
-
-		return tableBuilder.build().render(80);
+		return UsersView.render(model);
 	}
 
 }

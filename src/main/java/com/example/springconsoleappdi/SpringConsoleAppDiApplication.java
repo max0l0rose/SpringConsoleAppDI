@@ -205,7 +205,12 @@ public class SpringConsoleAppDiApplication {
 //		}
 
 		log.info("main: ----------------------------");
-		SpringApplication.run(SpringConsoleAppDiApplication.class, args);
+		try {
+			SpringApplication.run(SpringConsoleAppDiApplication.class, args);
+		} catch (IllegalStateException ex)
+		{
+			System.out.println(ex.getMessage());
+		}
 		log.info("main: ===========================!");
 
 

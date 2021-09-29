@@ -1,4 +1,4 @@
-package com.example.springconsoleappdi.repos;
+package com.example.springconsoleappdi.repo;
 
 import com.example.springconsoleappdi.model.User;
 import org.springframework.data.repository.PagingAndSortingRepository;
