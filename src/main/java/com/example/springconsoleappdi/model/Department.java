@@ -29,6 +29,15 @@ public class Department extends BaseEntity
 	@Column(length = 50)
 	@NotNull
 	String depName;
+
+	@Override
+	public String toString() {
+		return "Department{" +
+				       "id=" + id +
+				       ", created=" + created +
+				       ", modified=" + modified +
+				       '}';
+	}
 }
 
 

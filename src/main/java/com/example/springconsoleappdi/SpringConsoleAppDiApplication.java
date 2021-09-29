@@ -8,6 +8,7 @@ import com.example.springconsoleappdi.repo.UsersRepo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -15,6 +16,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.shell.Shell;
 import org.springframework.shell.standard.ShellComponent;
 
 import javax.persistence.*;
@@ -90,6 +92,65 @@ public class SpringConsoleAppDiApplication {
 		return  true;
 	}
 
+
+//	@Bean
+//	public ApplicationRunner shellRunner(Shell shell) {
+//		return new NonInteractiveShellRunner(shell);
+//	}
+
+
+//	@Order(0)
+//	public class NonInteractiveShellRunner implements ApplicationRunner{
+//
+//		private final Shell shell;
+//
+//		public NonInteractiveShellRunner(Shell shell) {
+//			this.shell = shell;
+//		}
+//
+//		@Override
+//		public void run(ApplicationArguments args) throws Exception {
+//			shell.run(new CommandInputProvider(args.getSourceArgs()));
+//		}
+//
+//		public static class PredefinedInputProvider implements InputProvider{
+//
+//			private final Input input;
+//			private boolean commandExecuted = false;
+//
+//			public PredefinedInputProvider(String[] args) {
+//				this.input = new PredefinedInput(args);
+//			}
+//
+//			@Override
+//			public Input readInput() {
+//				if (!commandExecuted){
+//					commandExecuted=true;
+//					return input;
+//				}
+//				return new PredefinedInput(new String[]{"exit"});
+//			}
+//
+//			@AllArgsConstructor
+//			private static class PredefinedInput implements Input{
+//
+//				private final String[] args;
+//
+//				@Override
+//				public String rawText() {
+//					return Seq.of(args).toString(" ");
+//				}
+//
+//				@Override
+//				public List<String> words(){
+//					return Arrays.asList(args);
+//				}
+//			}
+//
+//		}
+//
+//	}
+//
 
 	public static void main(String[] args) {
 		//List<String> zones = new ArrayList<>(ZoneId.getAvailableZoneIds());

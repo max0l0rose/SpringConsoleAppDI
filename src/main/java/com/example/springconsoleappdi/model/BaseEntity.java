@@ -13,7 +13,7 @@ import java.time.OffsetDateTime;
 //@Inheritance(strategy = InheritanceType.JOINED)
 @Data
 @MappedSuperclass
-public class BaseEntity {
+public class BaseEntity implements StringsArray {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY, generator = "sequenceGen")
@@ -43,6 +43,11 @@ public class BaseEntity {
 	//@Temporal(TemporalType.TIMESTAMP) // ERROR
 	//@UpdateTimestamp // hibernate
 	Instant modified; //LocalDateTime
+
+
+	public String[] toStringsArray() {
+		return new String[] {String.valueOf(id), String.valueOf(created), String.valueOf(modified)};
+	}
 
 //	@Column(columnDefinition = "DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
 //	OffsetDateTime created_offsetDT;
