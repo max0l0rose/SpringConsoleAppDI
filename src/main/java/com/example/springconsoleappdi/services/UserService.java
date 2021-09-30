@@ -3,15 +3,13 @@ package com.example.springconsoleappdi.services;
 import com.example.springconsoleappdi.model.User;
 import com.example.springconsoleappdi.repo.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 
 
 @Component
-public class UserService implements MyService<User>{
+public class UserService implements MyService<User> {
 //	private final static String URL = "jdbc:mysql://localhost:3306/db1";
 //	private final static String USERNAME = "root";
 //	private final static String PWD = "q12345";
@@ -57,8 +55,27 @@ public class UserService implements MyService<User>{
 //	}
 
 
-	public Page<User> getPage(Pageable page) {
-		return userRepository.findAll(page);
+//	public Page<User> getPage(Pageable page) {
+//		return userRepository.findAll(page);
+////		try {
+////			Statement statement = conn.createStatement();
+////			ResultSet rset = statement.executeQuery("SELECT * FROM users");
+////
+////			while (rset.next()) {
+////				User user = new User();
+////				user.setId(rset.getInt("id"));
+////				user.setName(rset.getString("name"));
+////				list.add(user);
+////			}
+////		} catch (SQLException e) {
+////			e.printStackTrace();
+////		}
+////		return list;
+//	}
+
+
+	public Iterable<User> getAll() {
+		return userRepository.findAll();
 //		try {
 //			Statement statement = conn.createStatement();
 //			ResultSet rset = statement.executeQuery("SELECT * FROM users");
@@ -76,7 +93,7 @@ public class UserService implements MyService<User>{
 	}
 
 
-	public Optional<User> show(int id) {
+	public Optional<User> show(long id) {
 //		Optional<User> u = Optional.ofNullable(null);
 //		u.filter()
 
@@ -140,7 +157,7 @@ public class UserService implements MyService<User>{
 //	}
 
 
-	public void delete(int id) {
+	public void delete(long id) {
 		userRepository.deleteById(id);
 //		try {
 //			PreparedStatement statement = conn.prepareStatement(

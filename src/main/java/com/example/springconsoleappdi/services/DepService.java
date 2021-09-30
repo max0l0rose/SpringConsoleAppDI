@@ -1,7 +1,6 @@
 package com.example.springconsoleappdi.services;
 
 import com.example.springconsoleappdi.model.Department;
-import com.example.springconsoleappdi.model.User;
 import com.example.springconsoleappdi.repo.DepsRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -11,7 +10,7 @@ import org.springframework.stereotype.Component;
 import java.util.Optional;
 
 @Component
-public class DepService implements MyService<Department>{
+public class DepService implements MyPagedService<Department> {
 //	private final static String URL = "jdbc:mysql://localhost:3306/db1";
 //	private final static String USERNAME = "root";
 //	private final static String PWD = "q12345";

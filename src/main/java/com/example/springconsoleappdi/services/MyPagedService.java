@@ -5,7 +5,7 @@ import org.springframework.data.domain.Pageable;
 
 import java.util.Optional;
 
-public interface MyService<T> {
+public interface MyPagedService<T> {
 	public Page<T> getPage(Pageable page);
 	Optional<T> show(int id);
 	T save(T o);

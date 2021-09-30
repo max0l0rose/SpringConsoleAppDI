@@ -8,10 +8,11 @@ import org.springframework.ui.Model;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
 
 public interface IView {
 	static String render(Model model) {
-		List<StringsArray> uList = (List)model.getAttribute("list");
+		Iterable<StringsArray> items = (Iterable)model.getAttribute("list");
 		String[][] headers = (String[][])model.getAttribute("headers");
 //				.forEach(q -> {
 //							Arrays.stream(q)
@@ -22,7 +23,8 @@ public interface IView {
 
 		Object[][] headersAndData = Stream.concat(
 						Arrays.stream(headers),
-						uList.stream().map(u -> u.toStringsArray())
+						StreamSupport.stream(items.spliterator(), false) // stream
+							.map(u -> u.toStringsArray())
 				)
 				.toArray(size -> new Object[size][]);
 

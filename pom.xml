@@ -22,6 +22,21 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
+<!--            <exclusions>-->
+<!--                To remove the Tomcat Connection Pool from the classpath, we can exclude it in our pom.xml:-->
+<!--                <exclusion>-->
+<!--                    <groupId>org.apache.tomcat</groupId>-->
+<!--                    <artifactId>tomcat-jdbc</artifactId>-->
+<!--                </exclusion>-->
+<!--                <exclusion>-->
+<!--                    <groupId>org.apache.tomcat.embed</groupId>-->
+<!--                    <artifactId>tomcat-embed-el</artifactId>-->
+<!--                </exclusion>-->
+<!--                <exclusion>-->
+<!--                    <groupId>com.zaxxer</groupId>-->
+<!--                    <artifactId>HikariCP</artifactId>-->
+<!--                </exclusion>-->
+<!--            </exclusions>-->
         </dependency>
 
         <dependency>
@@ -64,6 +79,12 @@
             <groupId>org.springframework.shell</groupId>
             <artifactId>spring-shell-starter</artifactId>
             <version>2.0.1.RELEASE</version>
+<!--            <exclusions>-->
+<!--                                <exclusion>-->
+<!--                                    <groupId>org.apache.tomcat.embed</groupId>-->
+<!--                                    <artifactId>tomcat-embed-el</artifactId>-->
+<!--                                </exclusion>-->
+<!--            </exclusions>-->
         </dependency>
 
     </dependencies>

@@ -55,7 +55,10 @@ public class UsersController
 //		//sampleData[1] = u.toStringsArray();
 
 		Model model = new ExtendedModelMap();
-		Helper.getPage(model, session, userService, 0, "id", "");
+		//Helper.getPage(model, session, userService, 0, "id", "");
+
+		Iterable<User> users = userService.getAll();
+		model.addAttribute("list", users);
 
 		return UsersView.render(model);
 	}

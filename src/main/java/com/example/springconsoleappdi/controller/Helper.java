@@ -1,6 +1,6 @@
 package com.example.springconsoleappdi.controller;
 
-import com.example.springconsoleappdi.services.MyService;
+import com.example.springconsoleappdi.services.MyPagedService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -15,7 +15,7 @@ public class Helper {
 
 	public static <T> void getPage(Model model,
 							   Map<String, Object> session,
-							   MyService<T> service,
+							   MyPagedService<T> service,
 							   int pageNumber,
 							   String sortIn,
 							   String sortDirIn) {
