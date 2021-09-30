@@ -32,6 +32,12 @@ public class Department extends BaseEntity
 	@NotNull
 	private String depName;
 
+
+	public String[] toStringsArray() {
+		return new String[] {String.valueOf(id), depName, String.valueOf(created), String.valueOf(modified)};
+	}
+
+
 	@Override
 	public String toString() {
 		return depName + "{"

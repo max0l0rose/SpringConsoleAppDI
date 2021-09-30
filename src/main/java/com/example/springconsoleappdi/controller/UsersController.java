@@ -20,7 +20,7 @@ import java.util.*;
 import java.util.stream.Stream;
 
 @ShellComponent
-public class AppController
+public class UsersController
 		//extends SecuredCommand
 {
 	private final Map<String,Object> session = new HashMap<>();

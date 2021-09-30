@@ -2,7 +2,7 @@ package com.example.springconsoleappdi.controller;
 
 import com.example.springconsoleappdi.services.DepService;
 import com.example.springconsoleappdi.services.UserService;
-import com.example.springconsoleappdi.view.UsersView;
+import com.example.springconsoleappdi.view.DepsView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @ShellComponent
-public class DepController {
+public class DepsController {
 	private final Map<String,Object> session = new HashMap<>();
 
 	@Autowired
@@ -30,7 +30,7 @@ public class DepController {
 		Model model = new ExtendedModelMap();
 		Helper.getPage(model, session, depService, 0, "id", "");
 
-		return UsersView.render(model);
+		return DepsView.render(model);
 	}
 
 }
